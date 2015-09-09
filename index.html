@@ -3,27 +3,36 @@
 <head>
     <title>Local Storage</title>
     <script>
-        var ctr= 0;
+        var ctr= localStorage.length;
         function saveValue(){
             var box= document.getElementById("text-box");
             var val= box.value;
+            
             localStorage.setItem("user-input"+ctr,val);
             
-            writeToP("user-input"+ctr, val);
+            writeToP();
             ctr++;
         }
-        function writeToP(a,b){
+        function writeToP(){
             var p= document.getElementById("saved-values");
-            /*for (var st in localStorage){
+            p.innerHTML=" ";
+            for (var st in localStorage){
                 p.innerHTML += st + ": " + localStorage.getItem(st) +"<br>";
-            }*/
-            p.innerHTML= p.innerHTML= p.innerHTML + a + ": " + b + "<br>";   
+            }
+            //p.innerHTML= p.innerHTML= p.innerHTML + a + ": " + b + "<br>";   
+        }
+        function clearStorage(){
+            localStorage.clear();
+            p = document.getElementById("saved-values");
+            p.innerHTML=" ";
+            ctr = 0;
         }
     </script>
 </head>
 <body>
     <input type="text" id="text-box">
     <button onclick="saveValue();">value</button>
+    <button onclick="clearStorage();">clear storage</button>
     <p id="saved-values"></p>
 </body>
 </html>
